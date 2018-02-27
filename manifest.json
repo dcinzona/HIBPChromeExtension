@@ -17,5 +17,6 @@
   "permissions": [
           "webRequest",
           "https://haveibeenpwned.com/*"
-        ]
+        ],
+  "homepage_url": "https://github.com/dcinzona/HIBPChromeExtension"
 }
