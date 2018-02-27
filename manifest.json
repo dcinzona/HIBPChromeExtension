@@ -1,0 +1,21 @@
+ {
+  "name": "Have I Been Pwned Password Checker 2",
+  "version": "1.0",
+  "manifest_version":2,
+  "description": "Checks all passwords against lists of known passwords leaked online via haveibeenpwned.com",
+  "browser_action": {
+    "name": "Manipulate DOM",
+    "icons": { "16": "assets/images/icon16.png",
+          "128": "assets/images/icon128.png" },
+    "default_icon": "assets/images/icon128.png"
+  },
+  "content_scripts": [ {
+  	"css": ["assets/css/bootstrap.min.css"],
+    "js": [ "assets/js/jquery.min.js", "assets/js/bootstrap.min.js", "assets/js/sha1.js" ,"src/popup.js" ],
+    "matches": [ "https://*/*"]
+  }],
+  "permissions": [
+          "webRequest",
+          "https://haveibeenpwned.com/*"
+        ]
+}
