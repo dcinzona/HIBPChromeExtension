@@ -2,7 +2,7 @@
   "name": "Have I Been Pwned Password Checker 2",
   "version": "1.0",
   "manifest_version":2,
-  "description": "Checks all passwords against lists of known passwords leaked online via haveibeenpwned.com",
+  "description": "Checks passwords against known passwords reported online to haveibeenpwned.com",
   "browser_action": {
     "name": "Manipulate DOM",
     "icons": { "16": "assets/images/icon16.png",
