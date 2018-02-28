@@ -7,13 +7,30 @@ hibpChecker = function(){
     return $(obj).val().length >= minLength;
   }
 
+  function toggleButton(obj,btn){
+    if(!hasValue(obj)){
+      btn.hide();
+    }else{
+      btn.show();
+    }
+  }
   //on keyup, start the countdown
   $(":password").each(function (index, obj) {
-    var btn = $('<a href="javascript:void(0)" type="submit" class="pwndChecker" style="position:relativ;margin-left:1em;">Check Password</a>');
+    //create button
+    var btn = $('<button type="button" class="pwndChecker" style="display:none;margin-left:1em;">Check Password</button>');
     $(obj).before(btn);
     btn.on('click', function () {
-      hibpChecker.checkPassword(obj);
+      if(hasValue(obj)){
+        hibpChecker.checkPassword(obj);
+      }
     });
+    //set up keyup handler
+    $(obj).on('keyup', function(){
+      $(obj).tooltip('destroy');
+      toggleButton(obj,btn);
+    });
+    //show/hide if it has a value on load
+    toggleButton(obj,btn);
   });
 
   var statuses = {
