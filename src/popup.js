@@ -17,7 +17,7 @@ hibpChecker = function(){
   //on keyup, start the countdown
   $(":password").each(function (index, obj) {
     //create button
-    var btn = $('<button type="button" class="pwndChecker" style="display:none;margin-left:1em;">Check Password</button>');
+    var btn = $('<a type="button" class="pwndChecker" style="display:none;margin-left:1em;float:right;">Check Password</button>');
     $(obj).before(btn);
     btn.on('click', function () {
       if(hasValue(obj)){
