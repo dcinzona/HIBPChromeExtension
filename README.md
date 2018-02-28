@@ -9,3 +9,5 @@ It uses HTTPS and Sha1 to send the data to haveibeenpwned.  It does not store yo
 For more details, check out the [API documentation](https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByPassword)
 
 To install this extension, clone the repository somewhere and manually load it following [these instructions](https://developer.chrome.com/extensions/getstarted#unpacked)
+
+![Demo](https://media.giphy.com/media/w8eHYvEEev3erP05ip/giphy.gif)
