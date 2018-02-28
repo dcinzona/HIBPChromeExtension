@@ -5,9 +5,12 @@
   "description": "Checks passwords against known passwords reported online to haveibeenpwned.com",
   "browser_action": {
     "name": "Manipulate DOM",
-    "icons": { "16": "assets/images/icon16.png",
-          "128": "assets/images/icon128.png" },
-    "default_icon": "assets/images/icon128.png"
+    "icons": {
+      "16": "assets/images/HIBP-Logo-16.png",
+      "32": "assets/images/HIBP-Logo-128.png",
+      "128": "assets/images/HIBP-Logo-128.png"
+    },
+    "default_icon": "assets/images/HIBP-Logo-128.png"
   },
   "content_scripts": [ {
   	"css": ["assets/css/bootstrap.min.css"],
@@ -18,5 +21,9 @@
           "webRequest",
           "https://haveibeenpwned.com/*"
         ],
-  "homepage_url": "https://github.com/dcinzona/HIBPChromeExtension"
+  "homepage_url": "https://github.com/dcinzona/HIBPChromeExtension",
+  "web_accessible_resources": [
+    "assets/images/*.png",
+    "assets/images/*.svg"
+  ]
 }
