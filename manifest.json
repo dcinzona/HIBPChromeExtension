@@ -19,7 +19,7 @@
   }],
   "permissions": [
           "webRequest",
-          "https://haveibeenpwned.com/*"
+          "https://api.pwnedpasswords.com/*"
         ],
   "homepage_url": "https://github.com/dcinzona/HIBPChromeExtension",
   "web_accessible_resources": [

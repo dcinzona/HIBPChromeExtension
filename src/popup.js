@@ -7,6 +7,19 @@ hibpChecker = function(){
     return $(obj).val().length >= minLength;
   }
 
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      }, wait);
+      if (immediate && !timeout) func.apply(context, args);
+    };
+  }
+
   function toggleButton(obj,btn){
     if(!hasValue(obj)){
       btn.hide();
@@ -17,11 +30,11 @@ hibpChecker = function(){
   //on keyup, start the countdown
   $(":password").each(function (index, obj) {
     //create button
-    var btn = $('<a type="button" style="display:none;margin-left:1em;float:right;cursor:pointer">Check Password</button>');
+    var btn = $('<a type="button" style="display:none;margin-left:1em;float:right;cursor:pointer">Check \';--</button>');
     $(obj).before(btn);
     btn.on('click', function () {
       if(hasValue(obj)){
-        hibpChecker.checkPassword(obj);
+        hibpChecker.checkPassword(obj)
       }
     });
     //set up keyup handler
@@ -32,12 +45,6 @@ hibpChecker = function(){
     //show/hide if it has a value on load
     toggleButton(obj,btn);
   });
-
-  var statuses = {
-    Found: 200,
-    Safe: 404,
-    RateLimit: 429
-  }
 
   var tooltips = {
     safe: {
@@ -61,23 +68,35 @@ hibpChecker = function(){
   }
 
   function checkHIBP(item) {
-    $(item).tooltip('destroy');
+    var $item = $(item);
+    $item.tooltip('destroy');
+    var hash = SHA1($item.val()).toUpperCase();
+    var prefix = hash.substr(0, 5);
+    var suffix = hash.substr(5);
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://haveibeenpwned.com/api/v2/pwnedpassword/" + sha1($(item).val()), true);
-    xhr.onload = function () {
+    xhr.onload = function(){
       switch (xhr.status) {
-        case statuses.Found:
-          $(item).tooltip(tooltips.found);
+        case 200:
+          var resp = xhr.responseText;
+          console.log(resp);
+          console.log(suffix);
+          console.log(resp.indexOf(suffix));
+          if (resp.indexOf(suffix) !== -1) {
+            $item.tooltip(tooltips.found);
+          } else {
+            $item.tooltip(tooltips.safe);
+          }
           break;
-        case statuses.Safe:
-          $(item).tooltip(tooltips.safe);
+        case 404:
+          $item.tooltip(tooltips.safe);
           break;
-        case statuses.RateLimit:
-          $(item).tooltip(tooltips.rateLimit);
+        case 429:
+          $item.tooltip(tooltips.rateLimit);
           break;
       }
-      $(item).tooltip('show');
-    };
+      $item.tooltip('show');
+    }
+    xhr.open('GET', 'https://api.pwnedpasswords.com/range/' + prefix);
     xhr.send();
   }
 
