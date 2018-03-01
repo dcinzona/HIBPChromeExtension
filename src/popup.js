@@ -78,9 +78,6 @@ hibpChecker = function(){
       switch (xhr.status) {
         case 200:
           var resp = xhr.responseText;
-          console.log(resp);
-          console.log(suffix);
-          console.log(resp.indexOf(suffix));
           if (resp.indexOf(suffix) !== -1) {
             $item.tooltip(tooltips.found);
           } else {
