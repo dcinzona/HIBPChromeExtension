@@ -2,6 +2,7 @@ hibpChecker = function(){
   'use strict';
 
   var minLength = 1;
+  var endpoint = 'https://api.pwnedpasswords.com/range/';
 
   function hasValue(obj) {
     return $(obj).val().length >= minLength;
@@ -93,7 +94,8 @@ hibpChecker = function(){
       }
       $item.tooltip('show');
     }
-    xhr.open('GET', 'https://api.pwnedpasswords.com/range/' + prefix);
+    var cachebreaker = '?' + 'HIBPChromeExtension';//(new Date()).getTime();
+    xhr.open('GET', endpoint + prefix + cachebreaker);
     xhr.send();
   }
 
