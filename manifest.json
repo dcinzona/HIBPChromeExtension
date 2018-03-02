@@ -17,12 +17,8 @@
     "js": [ "assets/js/jquery.min.js", "assets/js/bootstrap.min.js", "assets/js/sha1.js" ,"src/popup.js" ],
     "matches": [ "https://*/*"]
   }],
-  "background": {
-    "scripts": ["src/background.js"]
-  },
   "permissions": [
           "webRequest",
-          "webRequestBlocking",
           "https://api.pwnedpasswords.com/range/*"
         ],
   "homepage_url": "https://github.com/dcinzona/HIBPChromeExtension",
